@@ -3,7 +3,53 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{85C3DB43-DAE4-4E8D-8EBD-6F5FE8410128}"
+	ProjectSection(SolutionItems) = preProject
+		.editconfig = .editconfig
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FlexiPlugCore", "FlexiPlugCore\FlexiPlugCore.vcxproj", "{CD9DA930-D351-498B-8C9C-F946C72ED3A5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FlexiPlugTest", "FlexiPlugTest\FlexiPlugTest.vcxproj", "{89848CAA-9AA1-4B87-83C8-011A4ABBCBFC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD9DA930-D351-498B-8C9C-F946C72ED3A5} = {CD9DA930-D351-498B-8C9C-F946C72ED3A5}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FlexiPlug_TestPlugin", "FlexiPlug_TestPlugin\FlexiPlug_TestPlugin.vcxproj", "{94C7802E-9532-434B-97D5-A0D761E9E7A3}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD9DA930-D351-498B-8C9C-F946C72ED3A5}.Debug|x64.ActiveCfg = Debug|x64
+		{CD9DA930-D351-498B-8C9C-F946C72ED3A5}.Debug|x64.Build.0 = Debug|x64
+		{CD9DA930-D351-498B-8C9C-F946C72ED3A5}.Debug|x86.ActiveCfg = Debug|Win32
+		{CD9DA930-D351-498B-8C9C-F946C72ED3A5}.Debug|x86.Build.0 = Debug|Win32
+		{CD9DA930-D351-498B-8C9C-F946C72ED3A5}.Release|x64.ActiveCfg = Release|x64
+		{CD9DA930-D351-498B-8C9C-F946C72ED3A5}.Release|x64.Build.0 = Release|x64
+		{CD9DA930-D351-498B-8C9C-F946C72ED3A5}.Release|x86.ActiveCfg = Release|Win32
+		{CD9DA930-D351-498B-8C9C-F946C72ED3A5}.Release|x86.Build.0 = Release|Win32
+		{89848CAA-9AA1-4B87-83C8-011A4ABBCBFC}.Debug|x64.ActiveCfg = Debug|x64
+		{89848CAA-9AA1-4B87-83C8-011A4ABBCBFC}.Debug|x64.Build.0 = Debug|x64
+		{89848CAA-9AA1-4B87-83C8-011A4ABBCBFC}.Debug|x86.ActiveCfg = Debug|Win32
+		{89848CAA-9AA1-4B87-83C8-011A4ABBCBFC}.Debug|x86.Build.0 = Debug|Win32
+		{89848CAA-9AA1-4B87-83C8-011A4ABBCBFC}.Release|x64.ActiveCfg = Release|x64
+		{89848CAA-9AA1-4B87-83C8-011A4ABBCBFC}.Release|x64.Build.0 = Release|x64
+		{89848CAA-9AA1-4B87-83C8-011A4ABBCBFC}.Release|x86.ActiveCfg = Release|Win32
+		{89848CAA-9AA1-4B87-83C8-011A4ABBCBFC}.Release|x86.Build.0 = Release|Win32
+		{94C7802E-9532-434B-97D5-A0D761E9E7A3}.Debug|x64.ActiveCfg = Debug|x64
+		{94C7802E-9532-434B-97D5-A0D761E9E7A3}.Debug|x64.Build.0 = Debug|x64
+		{94C7802E-9532-434B-97D5-A0D761E9E7A3}.Debug|x86.ActiveCfg = Debug|Win32
+		{94C7802E-9532-434B-97D5-A0D761E9E7A3}.Debug|x86.Build.0 = Debug|Win32
+		{94C7802E-9532-434B-97D5-A0D761E9E7A3}.Release|x64.ActiveCfg = Release|x64
+		{94C7802E-9532-434B-97D5-A0D761E9E7A3}.Release|x64.Build.0 = Release|x64
+		{94C7802E-9532-434B-97D5-A0D761E9E7A3}.Release|x86.ActiveCfg = Release|Win32
+		{94C7802E-9532-434B-97D5-A0D761E9E7A3}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
