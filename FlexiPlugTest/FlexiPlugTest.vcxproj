@@ -72,26 +72,26 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(Configuration)\$(PlatformTarget)\</IntDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\$(PlatformTarget)\</IntDir>
     <IncludePath>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)FlexiPlugCore\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(Configuration)\$(PlatformTarget)\</IntDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\$(PlatformTarget)\</IntDir>
     <IncludePath>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)FlexiPlugCore\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(Configuration)\$(PlatformTarget)\</IntDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\$(PlatformTarget)\</IntDir>
     <TargetName>$(ProjectName)x64</TargetName>
     <IncludePath>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)FlexiPlugCore\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(Configuration)\$(PlatformTarget)\</IntDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\$(PlatformTarget)\</IntDir>
     <TargetName>$(ProjectName)x64</TargetName>
     <IncludePath>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\;$(SolutionDir)FlexiPlugCore\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)bin\$(PlatformTarget)\$(Configuration)\;$(LibraryPath)</LibraryPath>
