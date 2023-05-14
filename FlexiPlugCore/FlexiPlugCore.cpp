@@ -46,10 +46,22 @@ void FlexiPlugCore::LoadPlugins()
 			HMODULE hMod = LoadLibraryW(entry.path().wstring().c_str());
 			if (NULL != hMod)
 			{
-				FARPROC fp = GetProcAddress(hMod, "Link");
+				BOOL bIsUnLoad = TRUE;
+				FARPROC fp = GetProcAddress(hMod, "IsHostProcess");
 				if (NULL != fp)
-					m_Links.push_back(reinterpret_cast<fp_Link>(fp));
-				else
+				{
+					if (TRUE == reinterpret_cast<fp_IsHostProcess>(fp)())
+					{
+						fp = GetProcAddress(hMod, "Link");
+						if (NULL != fp)
+						{
+							m_Links.push_back(reinterpret_cast<fp_Link>(fp));
+							bIsUnLoad = FALSE;
+						}
+					}
+				}
+				
+				if (TRUE == bIsUnLoad)
 					FreeLibrary(hMod);
 			}
 		}

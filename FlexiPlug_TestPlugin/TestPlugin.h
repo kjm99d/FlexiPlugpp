@@ -11,9 +11,8 @@ extern "C"
 {
 #endif
 
+	FLEXIPLUGTESTPLUGIN_EXPORT BOOL IsHostProcess();
 	FLEXIPLUGTESTPLUGIN_EXPORT BOOL Link(int nId);
-
-
 
 #if __cplusplus
 }

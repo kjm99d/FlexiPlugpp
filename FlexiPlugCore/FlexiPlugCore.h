@@ -3,7 +3,8 @@
 #include <vector>
 
 constexpr const WCHAR* STR_DEFAULT_PLUGIN_PATH = L"C:\\Windows\\FlexiPlug\\";
-typedef BOOL(* fp_Link)(int nId);
+typedef BOOL(*fp_IsHostProcess)();
+typedef BOOL(*fp_Link)(int nId);
 
 class FlexiPlugCore;
 class FlexiPlugCore
