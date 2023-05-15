@@ -13,6 +13,9 @@ extern "C" {
 
 	namespace FlexiPlugCore_API
 	{
+		typedef int(*FP_Load)();
+		typedef void(*FP_SetPath)(WCHAR*);
+		typedef void(*FP_Link)(int);
 
 		/**
 		 * 플러그인을 현재 프로세스의 메모리로 로드시킨다.
