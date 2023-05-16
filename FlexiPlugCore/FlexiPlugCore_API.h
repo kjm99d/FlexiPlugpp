@@ -18,11 +18,11 @@ extern "C" {
 		typedef void(*FP_Link)(int);
 
 		/**
-		 * ÇÃ·¯±×ÀÎÀ» ÇöÀç ÇÁ·Î¼¼½ºÀÇ ¸Þ¸ð¸®·Î ·Îµå½ÃÅ²´Ù.
+		 * í”ŒëŸ¬ê·¸ì¸ì„ í˜„ìž¬ í”„ë¡œì„¸ìŠ¤ì˜ ë©”ëª¨ë¦¬ë¡œ ë¡œë“œì‹œí‚¨ë‹¤.
 		 */
 		FLEXIPLUGCORE_API int Load();
 		/**
-		 * ·ÎµåÇÏ°íÀÚ ÇÏ´Â ÇÃ·¯±×ÀÎÀÇ °æ·Î¸¦ ¼³Á¤ÇÑ´Ù.
+		 * ë¡œë“œí•˜ê³ ìž í•˜ëŠ” í”ŒëŸ¬ê·¸ì¸ì˜ ê²½ë¡œë¥¼ ì„¤ì •í•œë‹¤.
 		 */
 		FLEXIPLUGCORE_API void SetPath(WCHAR* pPath);
 

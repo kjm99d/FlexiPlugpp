@@ -23,21 +23,21 @@ FlexiPlugCore::~FlexiPlugCore()
 
 FlexiPlugCore::FlexiPlugCore()
 {
-
+	Load();
 }
 
 void FlexiPlugCore::LoadPlugins()
 {
-	// ±Ê¿Ã∞° 0¿Œ ∞ÊøÏ ∞Ê∑Œ∞° πÃº≥¡§¿Ãπ«∑Œ, ±‚∫ª ∞Ê∑Œ∏¶ ªÁøÎ«—¥Ÿ.
+	// Í∏∏Ïù¥Í∞Ä 0Ïù∏ Í≤ΩÏö∞ Í≤ΩÎ°úÍ∞Ä ÎØ∏ÏÑ§Ï†ïÏù¥ÎØÄÎ°ú, Í∏∞Î≥∏ Í≤ΩÎ°úÎ•º ÏÇ¨Ïö©ÌïúÎã§.
 	size_t nLenPluginPath = wcsnlen_s(m_szPluginPath, _countof(m_szPluginPath));
 	if (nLenPluginPath <= 0)
 		SetPluginPath(STR_DEFAULT_PLUGIN_PATH);
 
-	// ∞Ê∑Œ∞° æ¯¿∏∏È ∏∏µÁ¥Ÿ.
+	// Í≤ΩÎ°úÍ∞Ä ÏóÜÏúºÎ©¥ ÎßåÎì†Îã§.
 	if (false == fs::exists(fs::path(m_szPluginPath)))
 		fs::create_directories(fs::path(m_szPluginPath));
 
-	// ∆Ø¡§ ∞Ê∑Œ∏¶ º¯»∏«œ∏Èº≠ ¡∏¿Á«œ¥¬ dll ∆ƒ¿œµÈ¿ª ∑Œµ˘ Ω√≈≤¥Ÿ.
+	// ÌäπÏ†ï Í≤ΩÎ°úÎ•º ÏàúÌöåÌïòÎ©¥ÏÑú Ï°¥Ïû¨ÌïòÎäî dll ÌååÏùºÎì§ÏùÑ Î°úÎî© ÏãúÌÇ®Îã§.
 	for (const auto& entry : fs::directory_iterator(fs::path(m_szPluginPath)))
 	{
 		if (true == fs::is_regular_file(entry) && 
@@ -55,7 +55,7 @@ void FlexiPlugCore::LoadPlugins()
 						fp = GetProcAddress(hMod, "Link");
 						if (NULL != fp)
 						{
-							m_Links.push_back(reinterpret_cast<fp_Link>(fp));
+							m_Links.push_back({hMod, fp});
 							bIsUnLoad = FALSE;
 						}
 					}
@@ -76,17 +76,21 @@ void FlexiPlugCore::SetPluginPath(const WCHAR * pPath)
 
 void FlexiPlugCore::Link(int nId)
 {
-	for (auto fp : m_Links)
+	for (auto info : m_Links)
 	{
-		fp(nId);
+		reinterpret_cast<fp_Link>(info.fp)(nId);
 	}
 }
 
 void FlexiPlugCore::Load()
 {
-
+	// Empty Function ...
 }
 
 void FlexiPlugCore::UnLoad()
 {
+	for (auto info : m_Links)
+	{
+		FreeLibrary(info.hModule);
+	}
 }

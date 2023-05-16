@@ -9,6 +9,12 @@ typedef BOOL(*fp_Link)(int nId);
 class FlexiPlugCore;
 class FlexiPlugCore
 {
+private:
+	typedef struct _INFO_FUNCTION
+	{
+		HMODULE hModule;
+		FARPROC fp;
+	} INFO_FUNCTION;
 public:
 	static FlexiPlugCore& GetInstance();
 	~FlexiPlugCore();
@@ -25,7 +31,7 @@ private:
 	void Load();
 	void UnLoad();
 
-	std::vector<fp_Link> m_Links;
+	std::vector<INFO_FUNCTION> m_Links;
 
 public:
 	static WCHAR m_szPluginPath[1024];
