@@ -26,6 +26,50 @@ FlexiPlugCore::FlexiPlugCore()
 	Load();
 }
 
+BOOL FlexiPlugCore::IsBypassModule(const WCHAR* pModulePath)
+{
+	BOOL bIsBypass = TRUE;
+
+	// 이미 로딩된 모듈은 로딩하지 않도록 수정
+	if (NULL == GetModuleHandle(pModulePath))
+		bIsBypass = FALSE;
+	
+
+	return bIsBypass;
+}
+
+BOOL FlexiPlugCore::AddPluginModule(const WCHAR* pModulePath)
+{
+	BOOL bIsPluginModule = FALSE;
+	if (NULL != pModulePath)
+	{
+		HMODULE hMod = LoadLibraryW(pModulePath);
+		if (NULL != hMod)
+		{
+			BOOL bIsUnLoad = TRUE;
+			FARPROC fp = GetProcAddress(hMod, "IsHostProcess");
+			if (NULL != fp)
+			{
+				if (TRUE == reinterpret_cast<fp_IsHostProcess>(fp)())
+				{
+					fp = GetProcAddress(hMod, "Link");
+					if (NULL != fp)
+					{
+						m_Links.push_back({ hMod, fp });
+						bIsUnLoad = FALSE;
+						bIsPluginModule = TRUE;
+					}
+				}
+			}
+
+			if (TRUE == bIsUnLoad)
+				FreeLibrary(hMod);
+		}
+	}
+
+	return bIsPluginModule;
+}
+
 void FlexiPlugCore::LoadPlugins()
 {
 	// 길이가 0인 경우 경로가 미설정이므로, 기본 경로를 사용한다.
@@ -43,26 +87,17 @@ void FlexiPlugCore::LoadPlugins()
 		if (true == fs::is_regular_file(entry) && 
 			0 == entry.path().extension().compare(".dll"))
 		{
-			HMODULE hMod = LoadLibraryW(entry.path().wstring().c_str());
-			if (NULL != hMod)
+			const WCHAR* pModulePath = entry.path().wstring().c_str();
+			if (FALSE == IsBypassModule(pModulePath))
 			{
-				BOOL bIsUnLoad = TRUE;
-				FARPROC fp = GetProcAddress(hMod, "IsHostProcess");
-				if (NULL != fp)
+				if (TRUE == AddPluginModule(pModulePath))
 				{
-					if (TRUE == reinterpret_cast<fp_IsHostProcess>(fp)())
-					{
-						fp = GetProcAddress(hMod, "Link");
-						if (NULL != fp)
-						{
-							m_Links.push_back({hMod, fp});
-							bIsUnLoad = FALSE;
-						}
-					}
+					// 플러그인 모듈인 경우
 				}
-				
-				if (TRUE == bIsUnLoad)
-					FreeLibrary(hMod);
+				else
+				{
+					// 플러그인 모듈이 아닌 경우
+				}
 			}
 		}
 	}
