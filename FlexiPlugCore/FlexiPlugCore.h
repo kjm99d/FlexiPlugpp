@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <vector>
 
+
 #if _WIN64
 constexpr const WCHAR* STR_CURRENT_MODULE_NAME = L"FlexiPlugCorex64.dll";
 #else
@@ -30,7 +31,7 @@ private:
 
 private:
 	BOOL IsBypassModule(const WCHAR * pModulePath);
-	BOOL hasFilePrefix(const std::wstring& strFilePath);
+	BOOL hasFilePrefix(const WCHAR * pModulePath);
 	BOOL AddPluginModule(const WCHAR* pModulePath);
 
 public:

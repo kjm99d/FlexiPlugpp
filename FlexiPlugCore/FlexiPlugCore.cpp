@@ -27,11 +27,11 @@ FlexiPlugCore::FlexiPlugCore()
 	Load();
 }
 
-BOOL FlexiPlugCore::hasFilePrefix(const std::wstring& strFilePath)
+BOOL FlexiPlugCore::hasFilePrefix(const WCHAR* pModulePath)
 {
 	BOOL bResult = FALSE;
 
-	auto strFileName = fs::path(strFilePath).filename().wstring();
+	auto strFileName = fs::path(pModulePath).filename().wstring();
 	auto strPrefix = std::wstring(m_szModulePrefix);
 
 	if (static_cast<size_t>(0) <= strPrefix.length())
