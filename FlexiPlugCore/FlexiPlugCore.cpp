@@ -3,6 +3,7 @@
 
 #pragma  data_seg(".FlexiPlugCore")
 WCHAR FlexiPlugCore::m_szPluginPath[1024] = { 0, };
+WCHAR FlexiPlugCore::m_szModulePrefix[512] = { 0, };
 #pragma  data_seg()
 #pragma comment(linker, "/SECTION:.FlexiPlugCore,RWS")
 
@@ -24,6 +25,27 @@ FlexiPlugCore::~FlexiPlugCore()
 FlexiPlugCore::FlexiPlugCore()
 {
 	Load();
+}
+
+BOOL FlexiPlugCore::hasFilePrefix(const std::wstring& strFilePath)
+{
+	BOOL bResult = FALSE;
+
+	auto strFileName = fs::path(strFilePath).filename().wstring();
+	auto strPrefix = std::wstring(m_szModulePrefix);
+
+	if (static_cast<size_t>(0) <= strPrefix.length())
+	{
+		std::transform(strFileName.begin(), strFileName.end(), strFileName.begin(), ::tolower);
+		std::transform(strPrefix.begin(), strPrefix.end(), strPrefix.begin(), ::tolower);
+
+		if (static_cast<size_t>(0) == strFileName.find(strPrefix))
+		{
+			bResult = TRUE;
+		}
+	}
+
+	return bResult; // 접두어가 없는 경우 false 반환
 }
 
 BOOL FlexiPlugCore::IsBypassModule(const WCHAR* pModulePath)
@@ -90,7 +112,7 @@ void FlexiPlugCore::LoadPlugins()
 			const WCHAR* pModulePath = entry.path().wstring().c_str();
 			if (FALSE == IsBypassModule(pModulePath))
 			{
-				if (TRUE == AddPluginModule(pModulePath))
+				if (TRUE == hasFilePrefix(pModulePath) && TRUE == AddPluginModule(pModulePath))
 				{
 					// 플러그인 모듈인 경우
 				}
@@ -107,6 +129,12 @@ void FlexiPlugCore::SetPluginPath(const WCHAR * pPath)
 {
 	std::wmemset(m_szPluginPath, 0x00, _countof(m_szPluginPath));
 	wcscpy_s(m_szPluginPath, _countof(m_szPluginPath), pPath);
+}
+
+void FlexiPlugCore::SetModulePrefix(const WCHAR* pPrefix)
+{
+	std::wmemset(m_szModulePrefix, 0x00, _countof(m_szModulePrefix));
+	wcscpy_s(m_szModulePrefix, _countof(m_szModulePrefix), pPrefix);
 }
 
 void FlexiPlugCore::Link(int nId)

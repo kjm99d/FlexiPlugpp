@@ -12,6 +12,11 @@ void FlexiPlugCore_API::SetPath(WCHAR* pPath)
     FlexiPlugCore::GetInstance().SetPluginPath(pPath);
 }
 
+void FlexiPlugCore_API::SetPrefix(WCHAR* pPrefix)
+{
+    FlexiPlugCore::GetInstance().SetModulePrefix(pPrefix);
+}
+
 void FlexiPlugCore_API::Link(int nId)
 {
     FlexiPlugCore::GetInstance().Link(nId);

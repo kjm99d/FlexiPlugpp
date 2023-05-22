@@ -26,6 +26,11 @@ extern "C" {
 		 */
 		FLEXIPLUGCORE_API void SetPath(WCHAR* pPath);
 
+		/**
+		 * 로딩하고자 하는 플러그인의 접두어를 등록한다.
+		 */
+		FLEXIPLUGCORE_API void SetPrefix(WCHAR* pPrefix);
+
 		FLEXIPLUGCORE_API void Link(int nId);
 	};
 

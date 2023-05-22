@@ -30,11 +30,13 @@ private:
 
 private:
 	BOOL IsBypassModule(const WCHAR * pModulePath);
+	BOOL hasFilePrefix(const std::wstring& strFilePath);
 	BOOL AddPluginModule(const WCHAR* pModulePath);
 
 public:
 	void LoadPlugins();
 	void SetPluginPath(const WCHAR* pPath);
+	void SetModulePrefix(const WCHAR* pPrefix);
 	void Link(int nId);
 
 private:
@@ -46,4 +48,5 @@ private:
 
 public:
 	static WCHAR m_szPluginPath[1024];
+	static WCHAR m_szModulePrefix[512];
 };
