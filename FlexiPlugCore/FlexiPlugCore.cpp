@@ -109,10 +109,10 @@ void FlexiPlugCore::LoadPlugins()
 		if (true == fs::is_regular_file(entry) && 
 			0 == entry.path().extension().compare(".dll"))
 		{
-			const WCHAR* pModulePath = entry.path().wstring().c_str();
-			if (FALSE == IsBypassModule(pModulePath))
+			const auto & strModulePath = entry.path().wstring();
+			if (FALSE == IsBypassModule(strModulePath.c_str()))
 			{
-				if (TRUE == hasFilePrefix(pModulePath) && TRUE == AddPluginModule(pModulePath))
+				if (TRUE == hasFilePrefix(strModulePath.c_str()) && TRUE == AddPluginModule(strModulePath.c_str()))
 				{
 					// 플러그인 모듈인 경우
 				}
