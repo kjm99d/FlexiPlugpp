@@ -1,5 +1,7 @@
  # 📌FlexiPlugpp
 
+[![MSBuild](https://github.com/kjm99d/FlexiPlugpp/actions/workflows/msbuild.yml/badge.svg)](https://github.com/kjm99d/FlexiPlugpp/actions/workflows/msbuild.yml)
+
 `FlexiPlugpp` 프로젝트는 C++ 기반의 완성된 기본 프로젝트 구조에서 소스코드의 큰 수정 없이 프로젝트의 기능을 확장시키고자 만들어진 라이브러리입니다.
 
 ## ❓**사용방법**
